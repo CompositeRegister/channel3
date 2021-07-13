@@ -44,7 +44,7 @@ void user_pre_init(void)
 //0 is the normal flow
 //11 is the multi-panel scene.
 //12 is testing/dev flow.
-#define INITIAL_SHOW_STATE 17
+#define INITIAL_SHOW_STATE 18
 
 extern int gframe;
 char lastct[256];
@@ -80,6 +80,17 @@ void ICACHE_FLASH_ATTR DrawFrame(  )
 
 	switch( showstate )
 	{
+		case 18:
+	{
+		CNFGColor( 14 );
+		CNFGTackRectangle( 0, 0, 225, 210);
+
+		if( framessostate > 100 )
+		{
+			newstate = 12;
+		}
+		break;
+	}
 		case 17:
 	{
 		CNFGColor( 14 );
