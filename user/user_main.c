@@ -43,7 +43,8 @@ void user_pre_init(void)
 
 //0 is the normal flow
 //11 is the multi-panel scene.
-#define INITIAL_SHOW_STATE 0
+//12 is testing/dev flow.
+#define INITIAL_SHOW_STATE 17
 
 extern int gframe;
 char lastct[256];
@@ -79,17 +80,161 @@ void ICACHE_FLASH_ATTR DrawFrame(  )
 
 	switch( showstate )
 	{
+		case 17:
+	{
+		CNFGColor( 14 );
+		CNFGTackRectangle( 5, 0, 12, 40);
+		CNFGColor( 1 );
+		CNFGTackRectangle( 13, 0, 19, 40);
+		CNFGColor( 9 );
+		CNFGTackRectangle( 20, 0, 150, 40);
+		CNFGColor( 1 );
+		CNFGTackRectangle( 151, 0, 153, 40);
+		CNFGTackRectangle( 154, 3, 156, 37);
+		CNFGTackRectangle( 157, 7, 159, 33);
+		CNFGTackRectangle( 160, 12, 162, 27);
+		CNFGTackRectangle( 163, 18, 165, 21);
+		CNFGColor( 10 );
+		CNFGPenX = 10;
+		CNFGPenY= 20;
+		CNFGDrawText("TICONDEROGA", 2);
+		if( framessostate > 100 )
+		{
+			newstate = 12;
+		}
+		break;
+	}
+		case 16:
+	{
+		CNFGColor( 5 );
+		CNFGTackSegment( 15, 19, 49, 19);
+		CNFGTackSegment( 15, 20, 50, 20);
+		CNFGTackSegment( 15, 21, 51, 21);
+		CNFGTackSegment( 14, 22, 51, 22);
+		CNFGTackSegment( 14, 23, 52, 23);
+		CNFGTackSegment( 14, 24, 52, 24);
+		CNFGTackSegment( 13, 25, 51, 25);
+		CNFGTackSegment( 41, 26, 51, 26);
+		CNFGTackSegment( 41, 27, 51, 27);
+		CNFGTackSegment( 40, 28, 51, 28);
+		CNFGTackSegment( 40, 29, 50, 29);
+		CNFGTackSegment( 12, 30, 50, 30);
+		CNFGTackSegment( 12, 31, 49, 31);
+		CNFGTackSegment( 12, 32, 48, 32);
+		CNFGTackSegment( 11, 33, 48, 33);
+		CNFGTackSegment( 11, 34, 50, 34);
+		CNFGTackSegment( 11, 35, 50, 35);
+		CNFGTackSegment( 10, 36, 20, 36);
+		CNFGTackSegment( 39, 36, 48, 36);
+		CNFGTackSegment( 10, 37, 19, 37);
+		CNFGTackSegment( 10, 38, 19, 38);
+		CNFGTackSegment( 10, 39, 19, 39);
+		CNFGTackSegment( 9, 40, 18, 40);
+		CNFGTackSegment( 39, 37, 48, 37);
+		CNFGTackSegment( 38, 38, 48, 38);
+		CNFGTackSegment( 38, 39, 47, 39);
+		CNFGTackSegment( 38, 40, 47, 40);
+		CNFGTackSegment( 9, 41, 47, 41);
+		CNFGTackSegment( 9, 42, 46, 42);
+		CNFGTackSegment( 8, 43, 46, 43);
+		CNFGTackSegment( 8, 44, 46, 44);
+		CNFGTackSegment( 8, 45, 45, 45);
+		CNFGTackSegment( 8, 46, 44, 46);
+		CNFGTackSegment( 7, 47, 43, 47);
+		if( framessostate > 100 )
+		{
+			newstate = 17;
+		}
+		break;
+	}
+		case 15:
+	{
+		CNFGPenX = 5;
+		CNFGPenY = 10;
+		CNFGColor( 10 );
+		CNFGDrawText( "flashy things", 2);
+		if ( framessostate < 50 )
+		{
+		for( i = 0; i < 100; i++ )
+			{
+				CNFGColor( rand()%16 );
+				CNFGTackRectangle( rand()%FBW2, rand()%(FBH-30)+30, rand()%FBW2, rand()%(FBH-30)+30 );
+			}
+		}
+		if( framessostate > 50 )
+		{
+			newstate = 16;
+		}
+		break;
+	}
+	case 14:
+	{
+		int r = (rand() % (16 + 1 - 0)) + 0;
+		CNFGColor( r );
+		CNFGPenY = 10;
+		CNFGDrawText( "rgb!!!", 3 );
+		CNFGColor( r += 1 );
+		CNFGPenY = 40;
+		CNFGDrawText( "gamer\nmode!", 3 );
+		if( framessostate > 400 ) newstate = 15;
+		break;
+	}
+	case 13:
+	{
+		CNFGColor( 10 );
+		CNFGTackRectangle( 0, 0, 30, 100);
+		CNFGColor( 9 );
+		CNFGTackRectangle( 30, 0, 60, 100);
+		CNFGColor( 13 );
+		CNFGTackRectangle( 60, 0, 90, 100);
+		CNFGColor( 12 );
+		CNFGTackRectangle( 90, 0, 120, 100);
+		CNFGColor( 14 );
+		CNFGTackRectangle( 120, 0, 150, 100);
+		CNFGColor( 7 );
+		CNFGTackRectangle( 150, 0, 180, 100);
+		CNFGColor( 5 );
+		CNFGTackRectangle( 180, 0, 210, 100);
+		CNFGColor( 5 );
+		CNFGTackRectangle( 0, 100, 30, 130);
+		CNFGColor( 14 );
+		CNFGTackRectangle( 60, 100, 90, 130);
+		CNFGColor( 13 );
+		CNFGTackRectangle( 120, 100, 150, 130);
+		CNFGColor( 1 );
+		CNFGTackRectangle( 180, 100, 210, 130);
+		CNFGColor( 10 );
+		CNFGPenY = 130;
+		CNFGPenX = 0;
+		CNFGDrawText( "TESTING", 4 );
+		CNFGPenY = 150;
+		CNFGPenX = 0;
+		CNFGDrawText( "TESTING", 3 );
+		CNFGPenY = 170;
+		CNFGPenX = 0;
+		CNFGDrawText( "TESTING", 2 );
+		CNFGPenY = 190;
+		CNFGPenX = 0;
+		CNFGDrawText( "TESTING", 1 );
+		CNFGPenY = 185;
+		CNFGPenX = 87;
+		CNFGDrawText( "CH3", 3 );
+		if( framessostate > 400 ) newstate = 14;
+		break;
+	}
+	case 12:
+	{
+		CNFGDrawText( "test frames", 3);
+		if( framessostate > 30 ) newstate = 13;
+		break;
+	}
 	case 11:  // State that's not in the normal set.  Just displays boxes.
 	{
-		for( i = 0; i < 16; i++ )
-		{
-			int x = i%4;
-			int y = i/4;
-			x *= (FBW/4);
-			y *= (FBH/4);
-			CNFGColor( i );
-			CNFGTackRectangle( x, y, x+(FBW/4)-1, y+(FBH/4)-1);
-		}
+			CNFGPenX = 14;
+			CNFGPenY = 14;
+			CNFGColor( 15 );
+			CNFGDrawText( "test", 3 );
+			CNFGTackRectangle( 120, 12, 180, 24);
 		break;
 	}
 	case 10:
@@ -119,7 +264,7 @@ void ICACHE_FLASH_ATTR DrawFrame(  )
 		}
 
 
-		if( framessostate > 500 ) newstate = 9;
+		if( framessostate > 500 ) newstate = 12;
 	}
 		break;
 	case 9:
@@ -277,7 +422,7 @@ void ICACHE_FLASH_ATTR DrawFrame(  )
 			ctx += ets_sprintf( ctx, "NM: %d.%d.%d.%d\n", (ipi.netmask.addr>>0)&0xff,(ipi.netmask.addr>>8)&0xff,(ipi.netmask.addr>>16)&0xff,(ipi.netmask.addr>>24)&0xff );
 			ctx += ets_sprintf( ctx, "GW: %d.%d.%d.%d\nESP Online\n", (ipi.gw.addr>>0)&0xff,(ipi.gw.addr>>8)&0xff,(ipi.gw.addr>>16)&0xff,(ipi.gw.addr>>24)&0xff );
 			showtemp++;
-			if( showtemp == 30 ) newstate = 1;
+			if( showtemp == 30 ) newstate = 0;
 		}
 		break;
 	}
